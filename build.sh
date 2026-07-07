@@ -2,7 +2,7 @@
 
 token="5445531176:AAGwd6pVM-UoDrNos3R00QSlr0KuffkZLMY"
 chat_id="-1001921678002"
-
+android="10"
 
 
 echo "Cloning dependencies"
@@ -72,7 +72,7 @@ function compile() {
 # Zipping
 function zipping() {
     cd AnyKernel || exit 1
-    zip -r9 Predator-Stormbreaker-lavender-${TANGGAL}.zip *
+    zip -r9 tes-hmp-oldcam-lavender-${android}-${TANGGAL}.zip *
     cd ..
 }
 sticker
