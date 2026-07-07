@@ -5,10 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on:
-      - self-hosted
-      - linux
-      - x64
+    runs-on: ubuntu-latest
 
     container:
       image: z4nyx/docker:latest
@@ -21,7 +18,7 @@ jobs:
 
       - name: Run build.sh
         run: bash build.sh
-        
+
       - name: Upload Kernel
         uses: actions/upload-artifact@v4
         with:
@@ -30,3 +27,4 @@ jobs:
           out/arch/arm64/boot/Image*
           out/arch/arm64/boot/dtbo.img
           out/arch/arm64/boot/*.dtb
+          out/arch/arm64/boot/*.img
