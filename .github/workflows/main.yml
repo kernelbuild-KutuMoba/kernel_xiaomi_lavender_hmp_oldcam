@@ -1,0 +1,29 @@
+name: Build Kernel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: z4nyx/docker:latest
+
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - run: chmod +x build.sh
+
+      - name: Run build.sh
+        run: bash build.sh
+        
+      - name: Upload Kernel
+        uses: actions/upload-artifact@v4
+        with:
+         name: Kernel
+         path: |
+          out/arch/arm64/boot/Image*
+          out/arch/arm64/boot/dtbo.img
+          out/arch/arm64/boot/*.dtb
