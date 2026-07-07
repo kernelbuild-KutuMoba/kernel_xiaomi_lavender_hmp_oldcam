@@ -4,8 +4,8 @@ token="5445531176:AAGwd6pVM-UoDrNos3R00QSlr0KuffkZLMY"
 chat_id="-1001921678002"
 android="10 (Q)"
 devices="Xiaomi Redmi Note7/7S (lavender)"
-nama_zip="tes-hmp-oldcam-lavender"
-
+nama_zip="tes-hmp-oldcam-lavender-"
+status_oc="OC"
 
 echo "Cloning dependencies"
 git clone --depth=1 https://github.com/sohamxda7/llvm-stable  clang
@@ -89,7 +89,7 @@ function compile() {
 # Zipping
 function zipping() {
     cd AnyKernel || exit 1
-    zip -r9 ${nama_zip}-${android}-${TANGGAL}.zip *
+    zip -r9 ${nama_zip}${status_oc}-${android}-${TANGGAL}.zip *
     cd ..
 }
 sticker
