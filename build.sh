@@ -34,7 +34,8 @@ function sendinfo() {
         -d chat_id="$chat_id" \
         -d "disable_web_page_preview=true" \
         -d "parse_mode=html" \
-        -d text="<b>• ${KBUILD_BUILD_HOST} Kernel •</b>%0ABuild started%0AFor device <b>${devices}</b> %0Abranch <code>$(git rev-parse --abbrev-ref HEAD)</code>(master)%0AUnder commit <code>$(git log --pretty=format:'"%h : %s"' -1)</code>%0AUsing compiler: <code>${KBUILD_COMPILER_STRING}</code>%0AStarted on <code>$(date)</code>%0A<b>Build Status:</b>#Stable%0A %0A#KERNEL #ANDROID"}
+        -d text="⚒️<b>• ${KBUILD_BUILD_HOST} Kernel •</b>%0A⚙️Build started%0A📢For device <b>${devices}</b> %0A📝branch <code>$(git rev-parse --abbrev-ref HEAD)</code>(master)%0A📖Under commit <code>$(git log --pretty=format:'"%h : %s"' -1)</code>%0A🛠️Using compiler: <code>${KBUILD_COMPILER_STRING}</code>%0A⏳Started on <code>$(date)</code>%0A🔑<b>Build Status:</b>#Stable%0A %0A #ANDROID %0A #KERNEL"
+        }
 # Push kernel to channel
 function push() {
     cd AnyKernel
@@ -43,7 +44,7 @@ function push() {
         -F chat_id="$chat_id" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
-        -F caption="%0ABuild took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). %0A For <b>${devices}</b> %0A Android <b>${android}</b> %0A <b>$(${CLANG}clang --version | head -n1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b>"
+        -F caption="%0A🔨Build took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). %0A📢 For <b>${devices}</b> %0A📱 Android <b>${android}</b> %0A📀 <b>$(${CLANG}clang --version | head -n1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b>"
 }
 # Fin Error
 function finerr() {
