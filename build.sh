@@ -44,7 +44,7 @@ function push() {
         -F chat_id="$chat_id" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
-        -F caption="%0A🔨Build took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). %0A📢 For <b>${devices}</b> %0A📱 Android <b>${android}</b> %0A📀 <b>$(${CLANG}clang --version | head -n1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b>"
+        -F caption="🔨Build took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s).%0A📢For <b>${devices}</b> %0A📱Android <b>${android}</b>%0A📀 <b>$(${CLANG}clang --version | head -n1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b>"
 }
 # Fin Error
 function finerr() {
