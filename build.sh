@@ -34,17 +34,24 @@ function sendinfo() {
         -d chat_id="$chat_id" \
         -d "disable_web_page_preview=true" \
         -d "parse_mode=html" \
-        -d text="⚒️<b>• ${KBUILD_BUILD_HOST} Kernel •</b>%0A⚙️Build started%0A📢For <b>${devices}</b> %0A📝branch <code>$(git rev-parse --abbrev-ref HEAD)</code>(master)%0A📖Under commit <code>$(git log --pretty=format:'"%h : %s"' -1)</code>%0A🛠️Using compiler: <code>${KBUILD_COMPILER_STRING}</code>%0A⏳Started on <code>$(date)</code>%0A🔑<b>Build Status:</b>#Stable%0A %0A #ANDROID %0A #KERNEL"
+        -d text="⚒️<b>• ${KBUILD_BUILD_HOST} Kernel •</b>%0A %0A⚙️Build started%0A %0A📢For <b>${devices}</b> %0A %0A📝branch <code>$(git rev-parse --abbrev-ref HEAD)</code>(master)%0A %0A📖Under commit <code>$(git log --pretty=format:'"%h : %s"' -1)</code>%0A %0A🛠️Using compiler: <code>${KBUILD_COMPILER_STRING}</code>%0A %0A⏳Started on <code>$(date)</code>%0A %0A🔑<b>Build Status:</b>#Stable%0A %0A %0A #ANDROID %0A #KERNEL"
         }
 # Push kernel to channel
 function push() {
     cd AnyKernel
     ZIP=$(echo *.zip)
-    curl -F document=@$ZIP "https://api.telegram.org/bot$token/sendDocument" \
+    curl -F document=@$ZIP \
+        "https://api.telegram.org/bot$token/sendDocument" \
         -F chat_id="$chat_id" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
-        -F caption="\n 🔨 Build took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s)\n 📢 For <b>${devices}</b> \n 📱 Android <b>${android}</b>\n 📀 <b>$(${CLANG}clang --version | head -n1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b> \n #ANDROID  #KERNEL \n #XIAOMI  #UPDATE "
+        -F caption="🔨 Build took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s).
+        📍 For <b>${devices}</b>
+        📱 Android <b>${android}</b>
+        📀 <b>$(${CLANG}clang --version | head -n1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b> 
+        
+        #ANDROID  #KERNEL 
+        #XIAOMI  #UPDATE "
 }
 # Fin Error
 function finerr() {
