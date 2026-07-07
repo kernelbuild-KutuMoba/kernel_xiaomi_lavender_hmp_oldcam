@@ -3,6 +3,8 @@
 token="5445531176:AAGwd6pVM-UoDrNos3R00QSlr0KuffkZLMY"
 chat_id="-1001921678002"
 android="10"
+devices="Xiaomi Redmi Note7/7S (lavender)"
+nama_zip="tes-hmp-oldcam-lavender"
 
 
 echo "Cloning dependencies"
@@ -32,7 +34,7 @@ function sendinfo() {
         -d chat_id="$chat_id" \
         -d "disable_web_page_preview=true" \
         -d "parse_mode=html" \
-        -d text="<b>• Predator-Stormbreaker Kernel •</b>%0ABuild started on <code>Circle CI</code>%0AFor device <b>Xiaomi Redmi Note7/7S</b> (lavender)%0Abranch <code>$(git rev-parse --abbrev-ref HEAD)</code>(master)%0AUnder commit <code>$(git log --pretty=format:'"%h : %s"' -1)</code>%0AUsing compiler: <code>${KBUILD_COMPILER_STRING}</code>%0AStarted on <code>$(date)</code>%0A<b>Build Status:</b>#Stable"
+        -d text="<b>• ${KBUILD_BUILD_HOST} Kernel •</b>%0ABuild started on <code>Circle CI</code>%0AFor device <b>${devices}</b> %0Abranch <code>$(git rev-parse --abbrev-ref HEAD)</code>(master)%0AUnder commit <code>$(git log --pretty=format:'"%h : %s"' -1)</code>%0AUsing compiler: <code>${KBUILD_COMPILER_STRING}</code>%0AStarted on <code>$(date)</code>%0A<b>Build Status:</b>#Stable"
 }
 # Push kernel to channel
 function push() {
@@ -42,7 +44,7 @@ function push() {
         -F chat_id="$chat_id" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
-        -F caption="Build took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). | For <b>Xiaomi Redmi Note 7/7s (lavender)</b> | <b>$(${GCC}gcc --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b>"
+        -F caption="Build took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). | For <b>${devices}</b> | <b>${KERNEL_DIR}/clang/bin/clang --version | head -n1 perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b>"
 }
 # Fin Error
 function finerr() {
@@ -72,7 +74,7 @@ function compile() {
 # Zipping
 function zipping() {
     cd AnyKernel || exit 1
-    zip -r9 tes-hmp-oldcam-lavender-${android}-${TANGGAL}.zip *
+    zip -r9 ${nama_zip}-${android}-${TANGGAL}.zip *
     cd ..
 }
 sticker
