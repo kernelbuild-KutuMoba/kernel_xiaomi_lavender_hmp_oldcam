@@ -4,8 +4,10 @@ token="5445531176:AAGwd6pVM-UoDrNos3R00QSlr0KuffkZLMY"
 chat_id="-1001921678002"
 android="10 (Q)"
 devices="Xiaomi Redmi Note7/7S (lavender)"
-nama_zip="tes-hmp-oldcam-lavender-"
-status_oc="OC"
+nama_zip="tes-hmp-oldcam-lavender"
+# tanda - pada -OC bisa di hilangkan jika tidak memakai OC
+status_oc="-OC"
+LTO=1
 
 echo "Cloning dependencies"
 git clone --depth=1 https://github.com/sohamxda7/llvm-stable  clang
@@ -22,6 +24,29 @@ export KBUILD_COMPILER_STRING="$(${KERNEL_DIR}/clang/bin/clang --version | head 
 export ARCH=arm64
 export KBUILD_BUILD_HOST=teshost
 export KBUILD_BUILD_USER="tesuser"
+
+
+#if [ $1 = "--new" ]; then
+   echo " "
+   #echo " config newcam"
+   sleep 5
+   echo " "
+  # echo "CONFIG_XIAOMI_NEWCAM=y" >> arch/arm64/configs/lavender_defconfig
+#fi
+
+if [ $LTO = "1" ]; then
+echo "CONFIG_THIN_ARCHIVES=y
+CONFIG_LD_DEAD_CODE_DATA_ELIMINATION=y
+CONFIG_LTO=y
+CONFIG_ARCH_SUPPORTS_LTO_CLANG=y
+CONFIG_ARCH_SUPPORTS_THINLTO=y
+CONFIG_THINLTO=y
+# CONFIG_LTO_NONE is not set
+CONFIG_LTO_CLANG=y
+CONFIG_LLVM_POLLY=y
+CONFIG_CRYPTO_AES_ARM64=y" >> arch/arm64/configs/lavender-perf_defconfig
+fi
+
 # sticker plox
 function sticker() {
     curl -s -X POST "https://api.telegram.org/bot$token/sendSticker" \
