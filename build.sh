@@ -6,7 +6,11 @@ android="10 (Q)"
 devices="Xiaomi Redmi Note7/7S (lavender)"
 nama_zip="tes-hmp-oldcam-lavender"
 # tanda - pada -OC bisa di hilangkan jika tidak memakai OC
-status_oc="-OC"
+if [ "$1" = "--oc" ]; then
+    status_oc="-OC"
+else
+    status_oc=""
+fi
 LTO=1
 
 echo "Cloning dependencies"
