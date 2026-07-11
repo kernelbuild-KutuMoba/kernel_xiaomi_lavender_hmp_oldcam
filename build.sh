@@ -7,8 +7,17 @@ devices="Xiaomi Redmi Note7/7S (lavender)"
 nama_zip="tes-hmp-oldcam-lavender"
 # tanda - pada -OC bisa di hilangkan jika tidak memakai OC
 if [ "$1" = "--oc" ]; then
+#    nama_zip="tes-hmp-oldcam-lavender"
     status_oc="-OC"
+elif [ "$1" = "--new"]; then
+     echo " "
+     echo "   untuk contoh"
+     echo " "
+     sleep 5
+#    nama_zip="tes-hmp-newcam-lavender"
+#    echo "CONFIG_XIAOMI_NEWCAM=y" >> arch/arm64/configs/lavender_defconfig
 else
+#    nama_zip="tes-hmp-oldcam-lavender"
     status_oc=""
 fi
 LTO=1
