@@ -85,7 +85,7 @@ function push() {
 
 📀 <b>$(${CLANG}clang --version | head -n1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b> 
 
-🔑 <b> ${source} </b>
+🔑 Source <b>${source} </b>
 
 
 #ANDROID  #KERNEL 
