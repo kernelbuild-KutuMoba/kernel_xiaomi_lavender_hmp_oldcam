@@ -5,6 +5,7 @@ chat_id="-1001921678002"
 android="10 (Q)"
 devices="Xiaomi Redmi Note7/7S (lavender)"
 nama_zip="tes-hmp-oldcam-lavender"
+source="https://github.com/stormbreaker-project/kernel_xiaomi_lavender"
 LTO=1
 
 
@@ -83,7 +84,10 @@ function push() {
 📱 Android <b>${android}</b>
 
 📀 <b>$(${CLANG}clang --version | head -n1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b> 
-        
+
+🔑 <b> ${source} </b>
+
+
 #ANDROID  #KERNEL 
 #XIAOMI  #UPDATE "
 }
