@@ -5,7 +5,10 @@ chat_id="-1001921678002"
 android="10 (Q)"
 devices="Xiaomi Redmi Note7/7S (lavender)"
 nama_zip="tes-hmp-oldcam-lavender"
-# tanda - pada -OC bisa di hilangkan jika tidak memakai OC
+LTO=1
+
+
+
 if [ "$1" = "--oc" ]; then
 #    nama_zip="tes-hmp-oldcam-lavender"
     status_oc="-OC"
@@ -20,7 +23,6 @@ else
 #    nama_zip="tes-hmp-oldcam-lavender"
     status_oc=""
 fi
-LTO=1
 
 echo "Cloning dependencies"
 git clone --depth=1 https://github.com/sohamxda7/llvm-stable  clang
@@ -37,15 +39,6 @@ export KBUILD_COMPILER_STRING="$(${KERNEL_DIR}/clang/bin/clang --version | head 
 export ARCH=arm64
 export KBUILD_BUILD_HOST=teshost
 export KBUILD_BUILD_USER="tesuser"
-
-
-#if [ $1 = "--new" ]; then
-   echo " "
-   #echo " config newcam"
-   sleep 5
-   echo " "
-  # echo "CONFIG_XIAOMI_NEWCAM=y" >> arch/arm64/configs/lavender_defconfig
-#fi
 
 if [ $LTO = "1" ]; then
 echo "CONFIG_THIN_ARCHIVES=y
